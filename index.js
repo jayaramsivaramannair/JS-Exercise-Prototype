@@ -63,16 +63,19 @@ Person.prototype.toString = function() {
 
 /*
 const jayaram = new Person('Jayaram Nair', 36);
-jayaram.eat('Apples');
-jayaram.eat('Mango');
-jayaram.eat('Almonds');
-console.log(jayaram.toString());
-console.log(jayaram);
-console.log(jayaram.stomach);
-console.log(jayaram.poop());
-console.log(jayaram);
+console.log(jayaram.eat('Apples'));
+console.log(jayaram.eat('Mango'));
+console.log(jayaram.eat('Almonds'));
+console.log(jayaram.eat('burger'));
+console.log(jayaram.eat("IceCream"));
+console.log(jayaram.eat('Pizza'));
+console.log(jayaram.eat("Avocados"));
+console.log(jayaram.eat("steak"));
+console.log(jayaram.eat("Fajitas"));
+console.log(jayaram.eat("Shawarma"));
+console.log(jayaram.eat('pasta'));
+console.log(jayaram.eat("coffee"));
 */
-
 /*
   TASK 2
     - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
@@ -114,13 +117,14 @@ Car.prototype.drive = function(distance) {
   return `Total distance driven so far is ${this.odometer} miles and the current fuel level is ${this.tank} gallons`;
 }
 
+/*
 let honda = new Car('Civic', 29);
 honda.fill(3);
 console.log(`My ${honda.model} has ${honda.tank} gallons currently in the tank`);
 console.log(honda.drive(58));
 console.log(honda.drive(32));
 console.log(`Current fuel level in my ${honda.model} is ${honda.tank} gallons and it has been driven ${honda.odometer} miles`);
-
+*/
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -128,9 +132,25 @@ console.log(`Current fuel level in my ${honda.model} is ${honda.tank} gallons an
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age); //this enables Baby to simply extend the Person object
+  this.favoriteToy = favoriteToy;
 }
+
+Baby.prototype = Object.create(Person.prototype); //This will make Baby inherit all methods from the Person object
+Baby.prototype.play = function() {
+  return `Playing with ${this.favoriteToy}`;
+}
+
+const abel = new Baby('Abel Matthews', '3 months', 'Rattle');
+console.log(abel.play());
+
+console.log(abel.toString());
+console.log(abel.eat('milk'));
+console.log(abel.eat('fruit juice'));
+console.log(abel.eat('Porridge'));
+console.log(abel);
+
 
 /* 
   TASK 4
@@ -146,7 +166,7 @@ function Baby() {
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
-/*
+
 if (typeof exports !== 'undefined') {
   module.exports = module.exports || {}
   if (Airplane) { module.exports.Airplane = Airplane }
@@ -154,5 +174,4 @@ if (typeof exports !== 'undefined') {
   if (Car) { module.exports.Car = Car }
   if (Baby) { module.exports.Baby = Baby }
 }
-*/
 
