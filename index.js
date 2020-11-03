@@ -61,7 +61,7 @@ Person.prototype.toString = function() {
   return `${this.name}, ${this.age}`;
 }
 
-/*
+
 const jayaram = new Person('Jayaram Nair', 36);
 console.log(jayaram.eat('Apples'));
 console.log(jayaram.eat('Mango'));
@@ -75,7 +75,7 @@ console.log(jayaram.eat("Fajitas"));
 console.log(jayaram.eat("Shawarma"));
 console.log(jayaram.eat('pasta'));
 console.log(jayaram.eat("coffee"));
-*/
+
 /*
   TASK 2
     - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
@@ -117,14 +117,14 @@ Car.prototype.drive = function(distance) {
   return `Total distance driven so far is ${this.odometer} miles and the current fuel level is ${this.tank} gallons`;
 }
 
-/*
+
 let honda = new Car('Civic', 29);
 honda.fill(3);
 console.log(`My ${honda.model} has ${honda.tank} gallons currently in the tank`);
 console.log(honda.drive(58));
 console.log(honda.drive(32));
 console.log(`Current fuel level in my ${honda.model} is ${honda.tank} gallons and it has been driven ${honda.odometer} miles`);
-*/
+
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -142,6 +142,7 @@ Baby.prototype.play = function() {
   return `Playing with ${this.favoriteToy}`;
 }
 
+
 const abel = new Baby('Abel Matthews', '3 months', 'Rattle');
 console.log(abel.play());
 
@@ -152,15 +153,64 @@ console.log(abel.eat('Porridge'));
 console.log(abel);
 
 
+
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  The value of 'this' keyword depends on the call site where the function is invoked
+  1. First Principle: In case of a simple function call, 'this' keyword will refer to a global object
+
+  2. Second Principle: Implicit Binding occurs when 'this' keyword will refer to the object on which the function is called. This usually occurs when a function
+  is put as a method inside an object.
+
+  Example of Second Principle[Implicit Binding]:
+
+  function ghost() {
+    console.log(this.boo);
+  }
+
+  let myGhost = {
+    name: 'Casper',
+    boo: '👻 Boo!!',
+    ghost: ghost
+  }
+
+  myGhost.ghost();
+
+  3. Third Principle: Explicit Binding occurs when we explicitly set 'this' keyword to point to a specifc object using the methods call(), apply() or bind();
+
+  Example of Third Principle[Explicit Binding]:
+  function ghost() {
+    console.log(this.boo);
+  }
+
+  let myGhost = {
+    name: 'Casper',
+    boo: '👻 Boo!!'
+  }
+
+  ghost.call(myGhost);
+
+  4. Fourth Principle: When an constructor function is invoked using 'new', 'this' keyword points to the new object being created. 
+
+  Illustration of Fourth Principle[constructor function invocation with new keyword]:
+
+  function ghost(name) {
+    this.name = name;
+  }
+
+  let myGhost = new ghost("Casper, the friendly ghost");
+  let yourGhost = new ghost("Wasper, the horrible monster");
+
+  console.log(myGhost.name);
+  console.log(yourGhost.name);
 */
+
+  
+
+
+
 
 
 ///////// END OF CHALLENGE /////////
