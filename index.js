@@ -61,6 +61,7 @@ Person.prototype.toString = function() {
   return `${this.name}, ${this.age}`;
 }
 
+/*
 const jayaram = new Person('Jayaram Nair', 36);
 jayaram.eat('Apples');
 jayaram.eat('Mango');
@@ -70,7 +71,7 @@ console.log(jayaram);
 console.log(jayaram.stomach);
 console.log(jayaram.poop());
 console.log(jayaram);
-
+*/
 
 /*
   TASK 2
@@ -86,9 +87,39 @@ console.log(jayaram);
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0
 }
+
+Car.prototype.fill = function(gallons) {
+  this.tank += gallons;
+  return this.tank;
+}
+
+Car.prototype.drive = function(distance) {
+  let fuelUsed = distance / this.milesPerGallon;
+  let allowableDistance = this.tank * this.milesPerGallon;
+  if(distance < allowableDistance) {
+    this.tank -= fuelUsed;
+    this.odometer += distance;
+  } else {
+    this.tank = 0;
+    this.odometer += allowableDistance;
+    return  `I ran out of fuel at ${this.odometer} miles!`;
+  }
+  
+  return `Total distance driven so far is ${this.odometer} miles and the current fuel level is ${this.tank} gallons`;
+}
+
+let honda = new Car('Civic', 29);
+honda.fill(3);
+console.log(`My ${honda.model} has ${honda.tank} gallons currently in the tank`);
+console.log(honda.drive(58));
+console.log(honda.drive(32));
+console.log(`Current fuel level in my ${honda.model} is ${honda.tank} gallons and it has been driven ${honda.odometer} miles`);
 
 /*
   TASK 3
@@ -124,3 +155,4 @@ if (typeof exports !== 'undefined') {
   if (Baby) { module.exports.Baby = Baby }
 }
 */
+
